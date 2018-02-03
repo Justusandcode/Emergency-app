@@ -1,0 +1,109 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="jumbotron mylogin">
+        <h2>Log in</h2>
+				<div class="col-sm-8 col-sm-offset-2">
+				<form class="form-horizontal" role="form" method='POST'> 
+        {% csrf_token %}
+   <div class="form-group"> 
+      <label for="lastname" class="col-sm-2 control-label">*Email</label> 
+      <div class="col-sm-10"> 
+         <input type="text" name='username' class="form-control" id="email"  
+            placeholder="Enter Email"> 
+      </div> 
+   </div>
+   <div class="form-group"> 
+      <label for="lastname" class="col-sm-2 control-label">*Password</label> 
+      <div class="col-sm-10"> 
+         <input type="Password" name='password'class="form-control" id="password"  
+            placeholder="Enter Password" required> 
+      </div> 
+   </div>  
+   <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10"> 
+         <div class="checkbox"> 
+            <label> 
+               <input type="checkbox"> Remember me 
+            </label> 
+         </div> 
+      </div> 
+   </div> 
+   <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-10"> <button type="submit" class="btn btn-default">Log in</button> 
+      </div> 
+   </div> 
+</form>  
+			</div>
+		</div>	
+	</div>
+
+
+<script>
+  jQuery(document).ready(function($) {
+
+        $('#myCarousel').carousel({
+                interval: 5000
+        });
+
+        //Handles the carousel thumbnails
+        $('[id^=carousel-selector-]').click(function () {
+        var id_selector = $(this).attr("id");
+        try {
+            var id = /-(\d+)$/.exec(id_selector)[1];
+            console.log(id_selector, id);
+            jQuery('#myCarousel').carousel(parseInt(id));
+        } catch (e) {
+            console.log('Regex failed!', e);
+        }
+    });
+        // When the carousel slides, auto update the text
+        $('#myCarousel').on('slid.bs.carousel', function (e) {
+                 var id = $('.item.active').data('slide-number');
+                $('#carousel-text').html($('#slide-content-'+id).html());
+        });
+});
+</script>
+<script>
+/*Smoth Scroll effect Jquery Code*/
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+      &&
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+</script>
+	</footer>
+{% endblock %}

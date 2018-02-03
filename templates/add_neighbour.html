@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% if neighbours %}
+    <h4>You've {{neigbours.count}} contacts added to your profile </h4>
+    <ul>
+    {% for neighbour in neighbours %}
+    <ul>
+        <li>
+            Name - {{neighbour.name}}
+        </li>
+        <li>
+            Phone Number - {{neighbour.phone_number}}
+        </li>
+    </ul>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <h1>Add New Neighbour </h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <p>
+            <label>Neighbour's Name </label>
+            <input type="text" name="neighbour_name">
+        </p>
+        <p>
+            <label>Phone Number </label>
+            <input type="text" name="phone">
+        </p>
+        <button type="submit">Add Neigbour</button>
+
+    </form>
+</body>
+</html>

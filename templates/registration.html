@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block body %}
+    <br/>
+    <br/>
+    {% if err %}
+    <h2>{{err}}</h2>
+    {% endif %}
+    
+    <form method='POST'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type='submit'>Register ? </button>
+    </form>
+
+{% endblock %}
+
+

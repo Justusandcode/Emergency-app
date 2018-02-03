@@ -1,0 +1,5 @@
+{
+    "python.linting.enabled": false,
+    "python.pythonPath": "/home/eyitayo/.virtualenvs/Hackoka/bin/python3.6",
+    "git.ignoreLimitWarning": true
+}
